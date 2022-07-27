@@ -35,9 +35,9 @@ INSTALL_DIR=<install dir> make
 ## Usage
 
 ```plaintext
-usage: latex_offline [-h] [-w WORKDIR] [-c CMD] [-m {auto,manual}] [-d]
+usage: latex_offline [-h] [-w WORKDIR] [-c CMD] [-m {auto,manual}] [-d] [-v {light,full}] [-V]
 
-Offline LaTeX compiler
+Offline LaTeX compiler with auto reload
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -47,6 +47,9 @@ optional arguments:
   -m {auto,manual}, --mode {auto,manual}
                         Watcher mode. auto: compile on file change, manual: compile by typing rs then enter
   -d, --dry-run         Print the command without executing
+  -v {light,full}, --im-version {light,full}
+                        Set LaTeX Offline image version
+  -V, --version         show program's version number and exit
 ```
 
 Example:
