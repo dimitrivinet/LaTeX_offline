@@ -1,0 +1,15 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "/data/output",
+    "/data/main.pdf",
+    "*.zip"
+  ],
+  "verbose": true,
+  "watch": [
+    "/data"
+  ],
+  "ext": "tex,bib"
+}
