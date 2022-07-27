@@ -1,18 +1,36 @@
+ARG BASE=light
 # use base step since texlive takes a long time to install
 # it is not recommended to change this step
 FROM debian:buster as base
 
-# installing texlive and utils
+# installing utils
 RUN : \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
         git make curl wget nano \
-        texlive-full \
         python3-venv \
     && rm -rf /var/lib/apt/lists/* \
     && :
 
-FROM base
+FROM base as light
+
+RUN : \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
+        texlive \
+    && rm -rf /var/lib/apt/lists/* \
+    && :
+
+FROM base as full
+
+RUN : \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
+        texlive-full \
+    && rm -rf /var/lib/apt/lists/* \
+    && :
+
+FROM ${BASE}
 
 RUN : \
     && apt-get update \
