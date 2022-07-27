@@ -1,7 +1,7 @@
 .PHONY: build run
 
-IM_NAME=latex_offline
-IM_TAG=dev
+IM_NAME=dimitrivinet/latex_offline
+IM_TAG=v1.0.0-full
 CONTAINER_NAME=latex_offline
 
 IM_BASE=debian:buster
@@ -10,6 +10,9 @@ TEST_ASSET=$(shell pwd)/test_assets/work
 
 build:
 	docker build -t ${IM_NAME}:${IM_TAG} .
+
+push:
+	docker push ${IM_NAME}:${IM_TAG}
 
 run:
 	docker run -it --rm \
