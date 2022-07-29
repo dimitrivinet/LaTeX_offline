@@ -1,5 +1,5 @@
-.PHONY: build build-light build-full
-.PHONY: push push-light push-full
+.PHONY: build build-light build-extra build-full
+.PHONY: push push-light push-extra push-full
 .PHONY: run run-light run-full run-base
 
 IM_NAME=dimitrivinet/latex_offline
@@ -13,7 +13,7 @@ IM_BASE=debian:buster
 
 TEST_ASSET=$(shell pwd)/../test_assets/work
 
-build: build-light build-full
+build: build-light build-extra build-full
 
 build-light:
 	docker build -t ${IM_NAME}:${IM_TAG_LIGHT} --build-arg BASE=light .
@@ -24,7 +24,7 @@ build-extra:
 build-full:
 	docker build -t ${IM_NAME}:${IM_TAG_FULL} --build-arg BASE=full .
 
-push: push-light push-full
+push: push-light push-extra push-full
 
 push-light:
 	docker push ${IM_NAME}:${IM_TAG_LIGHT}
