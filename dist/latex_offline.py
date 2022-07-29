@@ -79,7 +79,7 @@ def main(argv: List[str]) -> int:
         "--im-version",
         help="Set LaTeX Offline image version",
         default="light",
-        choices=["light", "full"],
+        choices=["light", "extra", "full"],
     )
     parser.add_argument(
         "-V", "--version", action="version", version=f"%(prog)s {IM_VERSION_BASE}"
