@@ -93,7 +93,7 @@ def main(argv: List[str]) -> int:
         return 1
 
     nodemon_cmd = fn_nodemon_cmd(args.mode, args.cmd)
-    docker_cmd = fn_docker_cmd(workdir, args.version, nodemon_cmd)
+    docker_cmd = fn_docker_cmd(workdir, args.im_version, nodemon_cmd)
     print(" ".join(docker_cmd))
     if not args.dry_run:
         os.execvp("docker", docker_cmd)

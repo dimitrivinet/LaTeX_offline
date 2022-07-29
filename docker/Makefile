@@ -3,8 +3,9 @@
 .PHONY: run run-light run-full run-base
 
 IM_NAME=dimitrivinet/latex_offline
-VERSION=v1.0.0
+VERSION=v1.1.0
 IM_TAG_LIGHT=${VERSION}-light
+IM_TAG_EXTRA=${VERSION}-extra
 IM_TAG_FULL=${VERSION}-full
 CONTAINER_NAME=latex_offline
 
@@ -15,7 +16,10 @@ TEST_ASSET=$(shell pwd)/../test_assets/work
 build: build-light build-full
 
 build-light:
-	docker build -t ${IM_NAME}:${IM_TAG_LIGHT} .
+	docker build -t ${IM_NAME}:${IM_TAG_LIGHT} --build-arg BASE=light .
+
+build-extra:
+	docker build -t ${IM_NAME}:${IM_TAG_EXTRA} --build-arg BASE=extra .
 
 build-full:
 	docker build -t ${IM_NAME}:${IM_TAG_FULL} --build-arg BASE=full .
@@ -24,6 +28,9 @@ push: push-light push-full
 
 push-light:
 	docker push ${IM_NAME}:${IM_TAG_LIGHT}
+
+push-extra:
+	docker push ${IM_NAME}:${IM_TAG_EXTRA}
 
 push-full:
 	docker push ${IM_NAME}:${IM_TAG_FULL}

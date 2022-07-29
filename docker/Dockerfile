@@ -21,6 +21,15 @@ RUN : \
     && rm -rf /var/lib/apt/lists/* \
     && :
 
+FROM base as extra
+
+RUN : \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
+        texlive texlive-latex-extra \
+    && rm -rf /var/lib/apt/lists/* \
+    && :
+
 FROM base as full
 
 RUN : \
