@@ -8,7 +8,7 @@ from typing import List
 
 # Version dependent variables
 IM_NAME = "dimitrivinet/latex_offline"
-IM_VERSION_BASE = "v1.1.0"
+IM_VERSION_BASE = "v1.2.0"
 
 CONTAINER_NAME = "latex_offline"
 LOCAL_USER_ID = os.getuid()

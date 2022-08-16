@@ -3,7 +3,7 @@
 .PHONY: run run-light run-full run-base
 
 IM_NAME=dimitrivinet/latex_offline
-VERSION=v1.1.0
+VERSION=v1.2.0
 IM_TAG_LIGHT=${VERSION}-light
 IM_TAG_EXTRA=${VERSION}-extra
 IM_TAG_FULL=${VERSION}-full
@@ -42,7 +42,7 @@ run-light:
 	--name ${CONTAINER_NAME} \
 	-e LOCAL_USER_ID=$(shell id -u ${USER}) \
 	-v ${TEST_ASSET}:/data \
-	${IM_NAME}:${IM_TAG_FULL} \
+	${IM_NAME}:${IM_TAG_LIGHT} \
 	bash
 
 run-full:

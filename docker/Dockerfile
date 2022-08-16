@@ -45,6 +45,8 @@ RUN : \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
         gosu \
+        # other latex
+        latexmk \
         # for nodemon
         software-properties-common npm \
     && rm -rf /var/lib/apt/lists/* \
