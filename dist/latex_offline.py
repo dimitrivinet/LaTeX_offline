@@ -16,7 +16,7 @@ LOCAL_USER_ID = os.getuid()
 CWD = pathlib.Path(os.getcwd()).resolve()
 
 
-def fn_nodemon_cmd(mode: str, cmd: str) -> List[str]:
+def fn_nodemon_cmd(mode: str, cmd: str, verbose: bool) -> List[str]:
     return [
         "nodemon",
         "--config",
@@ -24,7 +24,7 @@ def fn_nodemon_cmd(mode: str, cmd: str) -> List[str]:
         "--watch",
         "/data/",
         "--exec",
-        f"cd /data && {cmd} > /dev/null",
+        f"cd /data && {cmd} > /dev/null" if not verbose else f"cd /data && {cmd}",
     ]
 
 
@@ -82,6 +82,9 @@ def main(argv: List[str]) -> int:
         choices=["light", "extra", "full"],
     )
     parser.add_argument(
+        "--verbose", help="Show verbose output", action="store_true",
+    )
+    parser.add_argument(
         "-V", "--version", action="version", version=f"%(prog)s {IM_VERSION_BASE}"
     )
 
@@ -92,7 +95,7 @@ def main(argv: List[str]) -> int:
         print(f"{args.workdir} is not a directory", file=sys.stderr)
         return 1
 
-    nodemon_cmd = fn_nodemon_cmd(args.mode, args.cmd)
+    nodemon_cmd = fn_nodemon_cmd(args.mode, args.cmd, args.verbose)
     docker_cmd = fn_docker_cmd(workdir, args.im_version, nodemon_cmd)
     print(" ".join(docker_cmd))
     if not args.dry_run:
