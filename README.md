@@ -62,6 +62,12 @@ watches for change in the `./work` directory, uses the command `sh compileall.sh
 
 Configuration with a file is also available. CLI args will overwrite file config.
 
+To get default configuration values for fiel config, run:
+
+```bash
+latex_offline --show-default-config
+```
+
 Config file with all available configurations and their default values:
 
 ```ini
