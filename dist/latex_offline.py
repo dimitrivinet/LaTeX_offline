@@ -4,6 +4,7 @@ import argparse
 import os
 import pathlib
 import sys
+import textwrap
 from typing import List
 import dataclasses
 from configparser import ConfigParser
@@ -58,6 +59,39 @@ class Config:
             ret.append(f"  {self._var_mappings[k]}: {v}")
 
         return "\n".join(ret)
+
+
+class ShowDefaultFileConfigAction(argparse.Action):
+    def __init__(
+        self,
+        option_strings,
+        dest=argparse.SUPPRESS,
+        default=argparse.SUPPRESS,
+        help="show default file config",
+    ):
+        super().__init__(
+            option_strings=option_strings,
+            dest=dest,
+            default=default,
+            nargs=0,
+            help=help,
+        )
+
+    def __call__(self, parser, *args, **kwargs):
+        config = textwrap.dedent(
+            f"""\
+            [{PROG}]
+            workdir=.
+            cmd=make
+            mode=auto
+            dry_run=false
+            im_version=light
+            verbose=false"""
+        )
+
+        print(config)
+        parser.exit()
+
 
 def config_from_file(path: pathlib.Path) -> dict:
     """Load config from file."""
@@ -162,6 +196,7 @@ def main(argv: List[str]) -> int:
     parser.add_argument(
         "-V", "--version", action="version", version=f"%(prog)s {IM_VERSION_BASE}"
     )
+    parser.add_argument("--show-default-config", action=ShowDefaultFileConfigAction)
 
     args = parser.parse_args(argv)
     cli_config = {k: v for k, v in vars(args).items() if v is not None}
