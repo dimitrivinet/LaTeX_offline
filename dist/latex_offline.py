@@ -13,7 +13,7 @@ PROG = "latex_offline"
 
 # Version dependent variables
 IM_NAME = "dimitrivinet/latex_offline"
-IM_VERSION_BASE = "v1.2.0"
+IM_VERSION_BASE = "v1.3.0"
 
 CONTAINER_NAME = "latex_offline"
 LOCAL_USER_ID = os.getuid()

@@ -3,7 +3,7 @@
 .PHONY: run run-light run-full run-base
 
 IM_NAME=dimitrivinet/latex_offline
-VERSION=v1.2.0
+VERSION=v1.3.0
 IM_TAG_LIGHT=${VERSION}-light
 IM_TAG_EXTRA=${VERSION}-extra
 IM_TAG_FULL=${VERSION}-full

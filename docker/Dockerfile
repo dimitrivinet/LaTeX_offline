@@ -46,7 +46,7 @@ RUN : \
     && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
         gosu \
         # other latex
-        latexmk \
+        latexmk  python-pygments \
         # for nodemon
         software-properties-common npm \
     && rm -rf /var/lib/apt/lists/* \
