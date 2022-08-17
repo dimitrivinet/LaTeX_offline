@@ -59,3 +59,17 @@ latex_offline --workdir ./work/ --cmd "sh compileall.sh" --mode manual
 ```
 
 watches for change in the `./work` directory, uses the command `sh compileall.sh` to compile the source files into a PDF, and requires the user to type `rs` then press `Enter` to trigger the compilation.
+
+Configuration with a file is also available. CLI args will overwrite file config.
+
+Config file with all available configurations and their default values:
+
+```ini
+[latex_offline]
+workdir=.
+cmd=make
+mode=auto
+dry_run=false
+im_version=light
+verbose=false
+```
